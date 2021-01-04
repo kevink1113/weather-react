@@ -15,24 +15,25 @@ class App extends React.Component {
     };
 
     getWeathers() {
-        axios
-            .get(
-                "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=3ff45f341f358a1d2fa7afc352c35dac&units=metric"
-            )
-            .then((response) => {
-                console.log(response);
-                const data = response.data;
-                console.log(data);
-                const weather = data.weather[0];
+        const API_KEY = process.env.REACT_APP_API_KEY;
+        const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}`;
 
-                this.setState({
-                    id: weather.id,
-                    img: weather.icon,
-                    isLoading: false,
-                    description: weather.description,
-                    temp: data.main.temp,
-                });
+        // console.log(API_URL);
+
+        axios.get(API_URL).then((response) => {
+            // console.log(response);
+            const data = response.data;
+            // console.log(data);
+            const weather = data.weather[0];
+
+            this.setState({
+                id: weather.id,
+                img: weather.icon,
+                isLoading: false,
+                description: weather.description,
+                temp: data.main.temp,
             });
+        });
     }
 
     componentDidMount() {
