@@ -17,7 +17,7 @@ class App extends React.Component {
     getWeathers() {
         axios
             .get(
-                "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=3ff45f341f358a1d2fa7afc352c35dac&units=metric"
+                "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=3ff45f341f358a1d2fa7afc352c35dac&units=metric"
             )
             .then((response) => {
                 console.log(response);
